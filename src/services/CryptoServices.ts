@@ -8,7 +8,7 @@ import { Pair } from "../types";
 
 export async function getCryptos() {
   const url =
-    "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD";
+    "https://min-api.cryptocompare.com/data/top/totalvolfull?limit=30&tsym=USD";
 
   const {
     data: { Data },
@@ -31,8 +31,8 @@ export async function fetchCurrentCryptoPrice(pair: Pair) {
   } = await axios(url);
 
   const result = safeParse(
-    DISPLAY[pair.crypto][pair.currency],
-    CryptoPriceResponseSchema
+    CryptoPriceResponseSchema,
+    DISPLAY[pair.crypto][pair.currency]
   );
 
   if (result.success) {
